@@ -1,11 +1,11 @@
-import './App.css'
+import { Header } from "./components/Header/Header";
 
 function App() {
-
-  const name = "Adrian";
-  if (name) {
-    return <h1>Hello {name}</h1>;
-  }  else return <h1>Hello World</h1>
+  return (
+    <div>
+      <Header></Header>
+    </div>
+  );
 }
 
-export default App
+export default App;
