@@ -1,16 +1,17 @@
 import { Header } from "./components/Header/Header";
-import { CardContainer } from "./components/Header/Main/Card-Display/Card-Container";
-import { SideBar } from "./components/Header/Main/Sidebar/Sidebar";
-import { InitiativeBar } from "./components/Header/Main/Initiative-Bar/Initiative-Bar";
+import { CardContainer } from "./components/Main/Card-Display/Card-Container";
+// import { SideBar } from "./components//Main/Sidebar/Sidebar";
+// import { InitiativeBar } from "./components/Main/Initiative-Bar/Initiative-Bar";
 
 function App() {
   return (
     <div>
-      <Header/>
-      <main>
-        <SideBar></SideBar>
+      <Header>
+      </Header>
+      <main style={{display : "flex", justifyContent : "center"}}>
+        {/* <SideBar></SideBar> */}
         <CardContainer></CardContainer>
-        <InitiativeBar></InitiativeBar>
+        {/* <InitiativeBar></InitiativeBar> */}
       </main>
     </div>
   );
