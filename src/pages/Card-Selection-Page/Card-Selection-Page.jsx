@@ -3,7 +3,7 @@ import { CardContainer } from "../components/Main/Card-Display/Card-Container";
 import { SideBar } from "../components/Main/Sidebar/Sidebar";
 import { DisplayCard } from "../components/Display-Cards/Display-Card";
 
-function CardSelectionPage() {
+export function CardSelectionPage() {
   return (
     <div>
       <Header />
@@ -17,4 +17,3 @@ function CardSelectionPage() {
   );
 }
 
-export default CardSelectionPage;

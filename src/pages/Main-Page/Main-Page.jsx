@@ -4,7 +4,7 @@ import { SideBar } from "../components/Main/Sidebar/Sidebar";
 import { InitiativeBar } from "../components/Main/Initiative-Bar/Initiative-Bar";
 import { DisplayCard } from "../components/Display-Cards/Display-Card";
 
-function MainPage() {
+export function MainPage() {
   return (
     <div>
       <Header />
@@ -19,4 +19,3 @@ function MainPage() {
   );
 }
 
-export default MainPage;
