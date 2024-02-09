@@ -1,0 +1,9 @@
+.DisplayCardBox{
+  background-color: #ba1111;
+  color: rgb(237, 227, 227);
+  text-align: center;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
