@@ -1,0 +1,38 @@
+/* Card.module.css */
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 200px; /* Adjust based on your preference */
+  border: 1px solid;
+}
+
+.topSection {
+  display: flex;
+  padding: 10px;
+}
+
+.cardImage {
+  width: 50px; /* Adjust based on your preference */
+  height: 50px; /* Adjust based on your preference */
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.textbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  margin-bottom: 5px;
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}

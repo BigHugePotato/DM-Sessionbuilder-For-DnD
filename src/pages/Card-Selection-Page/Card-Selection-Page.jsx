@@ -1,7 +1,6 @@
-import { Header } from "../../components/Header/Header";
-import { CardContainer } from "../../components/Main/Card-Display/Card-Container";
-import { SideBar } from "../../components/Main/Sidebar/Sidebar";
-import { DisplayCard } from "../../components/Display-Cards/Display-Card";
+import { Header } from "../../components/Layouts/Header/Header";
+import { CardContainer } from "../../components/Parts/Card-Display/Card-Container";
+import { SideBar } from "../../components/Parts/Sidebar/Sidebar";
 
 export function CardSelectionPage() {
   return (
@@ -9,11 +8,8 @@ export function CardSelectionPage() {
       <Header />
       <main>
         <SideBar />
-        <CardContainer>
-          <DisplayCard />
-        </CardContainer>
+        <CardContainer></CardContainer>
       </main>
     </div>
   );
 }
-
