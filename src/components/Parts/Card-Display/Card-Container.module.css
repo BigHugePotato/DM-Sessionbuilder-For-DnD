@@ -1,6 +1,8 @@
 .cardContainer {
-    width: 70%;
-    background-color: rgb(162, 101, 8);
+    width: 80%;
+    background-color: rgb(186, 175, 158);
     height: auto;
     border: 1px solid;
+    display: flex;
+    flex-wrap: wrap;
 }

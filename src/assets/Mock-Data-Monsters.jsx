@@ -17,6 +17,7 @@ export const monsters = [
       DEX: "+2",
       CON: "+8",
     },
+    imgSrc: "./wraith.jpg"
   },
   {
     name: "Goblin Chieftain",

@@ -10,9 +10,10 @@ export const UnitDisplayCard = ({ monster }) => {
     reactions,
     legendaryActions,
     savingThrows,
+    imgSrc,
   } = monster;
 
-  // Preparing text for the top and bottom sections
+  
   const topTexts = [`AC: ${ac}`, `HP: ${hp}`];
 const bottomTexts = [
   `Resistances: ${resistances ? resistances.join(", ") : "None"}`,
@@ -33,6 +34,7 @@ const bottomTexts = [
   return (
     <div className={style.card}>
       <div className={style.topSection}>
+        <img src={imgSrc} alt={name} className={style.cardImage} />{" "}
         <h2>{name}</h2>
         <div className={style.textbox}>
           {topTexts.map((text, index) => (
