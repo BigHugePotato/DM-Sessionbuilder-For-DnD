@@ -1,36 +1,19 @@
 import style from "./Display-Card.module.css";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 
-export const UnitDisplayCard = ({ monsterId }) => {
-  const [monsterDetails, setMonsterDetails] = useState(null);
-
-  useEffect(() => {
-    const fetchMonsterDetails = async () => {
-      try {
-        const response = await fetch(`https://www.dnd5eapi.co/api/monsters/:index`);
-        if (!response.ok) {
-          throw new Error("Could not fetch monster id");
-        }
-        const data = await response.json();
-        setMonsterDetails(data);
-      } catch (error) {
-        console.error("failed to fetch monster details:", error)
-      }
-    };
-
-    fetchMonsterDetails();
-    
-  }, [monsterId]);
-
-  if (!monsterDetails) return <div>Loading...</div>
-
+export const UnitDisplayCard = ({ monster }) => {
 
   const {
     name,
-    armor_class: ac,
-    hit_points: hp,
+    ac,
+    hp,
+    resistances,
+    reactions,
+    legendaryActions,
+    savingThrows,
     imgSrc,
-  } = monsterDetails;
+  } = monster;
+
   
   const topTexts = [`AC: ${ac}`, `HP: ${hp}`];
 const bottomTexts = [
