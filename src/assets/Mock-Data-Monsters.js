@@ -1,3 +1,8 @@
+import wraithImage from "./Images/wraith.jpg";
+import GoblinImg from "./Images/Goblin.jpg";
+import AbyssalImg from "./Images/Abyssal.webp";
+
+
 export const monsters = [
   {
     name: "Abyssal Horror",
@@ -17,7 +22,7 @@ export const monsters = [
       DEX: "+2",
       CON: "+8",
     },
-    imgSrc: "./wraith.jpg"
+    imgSrc: wraithImage,
   },
   {
     name: "Goblin Chieftain",
@@ -28,6 +33,7 @@ export const monsters = [
       STR: "+1",
       DEX: "+3",
     },
+    imgSrc: GoblinImg,
   },
   {
     name: "Ethereal Wraith",
@@ -38,5 +44,6 @@ export const monsters = [
       "Phase Shift":
         "When targeted by an attack, can become ethereal until the start of its next turn.",
     },
+    imgSrc: AbyssalImg,
   },
 ];
