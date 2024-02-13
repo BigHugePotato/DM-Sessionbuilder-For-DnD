@@ -34,7 +34,7 @@ const bottomTexts = [
   return (
     <div className={style.card}>
       <h2 className={style.name}>{name}</h2>
-      <div className={style.upperSection}>
+      <div className={style.topSection}>
         <img src={imgSrc} alt={name} className={style.cardImage} />{" "}
         <div className={style.textbox}>
           {topTexts.map((text, index) => (
