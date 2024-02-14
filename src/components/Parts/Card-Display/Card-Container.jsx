@@ -21,6 +21,7 @@ export function CardContainer() {
       }
     };
 
+    
     fetchMonsterIndexes();
   }, []);
 
