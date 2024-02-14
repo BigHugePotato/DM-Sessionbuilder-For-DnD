@@ -1,5 +1,6 @@
 .initiativeBar {
-    width: 10%;
+    width: 2%;
     background-color: rgb(123, 115, 104);
     height: auto;
+    font-size: 0.3rem;
 }
