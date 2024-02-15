@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { UnitDisplayCard } from "./Display-Cards/Unit-Display-Card"
+import { MonsterDisplayCard } from "./Display-Cards/Monster-Display-Card"
 import style from "./Card-Container.module.css";
 
 export function CardContainer() {
@@ -8,20 +8,20 @@ export function CardContainer() {
     useEffect(() => {
     const fetchMonsterIndexes = async () => {
       try {
-        const response = await fetch(`https://www.dnd5eapi.co/api/monsters`, {
+        const response = await fetch(`https://api.open5e.com/v1/monsters/?limit=30`, {
           headers: { Accept: 'application/json' }
         });
         if (!response.ok) {
           throw new Error('Failed to fetch monster indexes');
         }
         const data = await response.json();
-        setMonsterIndexes(data.results.slice(0, 10));
+        setMonsterIndexes(data.results);
       } catch (error) {
         console.error("Error fetching monster indexes:", error);
       }
     };
 
-    
+
     fetchMonsterIndexes();
   }, []);
 
@@ -29,7 +29,7 @@ export function CardContainer() {
   return (
     <div className={style.cardContainer}>
       {monsterIndexes.map((monster, index) => (
-        <UnitDisplayCard key={index} monsterId={monster.index} />
+        <MonsterDisplayCard key={index} monsterId={monster.slug} />
       ))}
     </div>
   );
