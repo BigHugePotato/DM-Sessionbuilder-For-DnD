@@ -1,5 +1,6 @@
 import style from "./Monster-Card.module.css";
 import { useState, useEffect } from "react";
+import { Tooltip } from "../Tool-Tip/Tool-Tip";
 
 export const MonsterDisplayCard = ({ monsterId }) => {
   const [monsterDetails, setMonsterDetails] = useState(null);
@@ -85,6 +86,9 @@ export const MonsterDisplayCard = ({ monsterId }) => {
             {text}
           </div>
         ))}
+        <Tooltip content={damage_immunities || "None"}>
+          <span>Immunities</span>
+        </Tooltip>
       </div>
     </div>
   );
