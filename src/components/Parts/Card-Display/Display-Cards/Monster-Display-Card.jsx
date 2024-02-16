@@ -60,12 +60,6 @@ export const MonsterDisplayCard = ({ monsterId }) => {
     }`,
   ];
 
-  const bottomTexts = [
-    `Immunities: ${damage_immunities || "None"}`,
-    `Resistances: ${damage_resistances || "None"}`,
-    `Condition Immunities: ${condition_immunities || "None"}`,
-    `Senses: ${senses || "None"}`,
-  ];
 
   return (
     <div className={style.monsterCard}>
@@ -81,13 +75,17 @@ export const MonsterDisplayCard = ({ monsterId }) => {
         </div>
       </div>
       <div className={style.bottomSection}>
-        {bottomTexts.map((text, index) => (
-          <div key={index} className={style.text}>
-            {text}
-          </div>
-        ))}
         <Tooltip content={damage_immunities || "None"}>
           <span>Immunities</span>
+        </Tooltip>
+        <Tooltip content={damage_resistances || "None"}>
+          <span>Resistances</span>
+        </Tooltip>
+        <Tooltip content={condition_immunities || "None"}>
+          <span>Condition Immunities</span>
+        </Tooltip>
+        <Tooltip content={senses || "None"}>
+          <span>Senses</span>
         </Tooltip>
       </div>
     </div>
