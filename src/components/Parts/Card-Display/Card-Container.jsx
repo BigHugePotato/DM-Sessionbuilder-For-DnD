@@ -8,7 +8,7 @@ export function CardContainer() {
     useEffect(() => {
     const fetchMonsterIndexes = async () => {
       try {
-        const response = await fetch(`https://api.open5e.com/v1/monsters/?limit=30`, {
+        const response = await fetch(`https://api.open5e.com/v1/monsters/?limit=10`, {
           headers: { Accept: 'application/json' }
         });
         if (!response.ok) {
