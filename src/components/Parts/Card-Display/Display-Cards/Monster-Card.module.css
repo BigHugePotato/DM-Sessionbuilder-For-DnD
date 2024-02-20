@@ -15,7 +15,7 @@ h2 {
 
 .topSection {
   display: flex;
-  padding: 5px;
+  padding: 0px;
 }
 
 .textbox {
@@ -35,6 +35,7 @@ h2 {
 .imageContainer {
   max-width: 60%;
   height: 80px;
+  margin: 0 5px 0 0;
 }
 
 .monsterImage {
