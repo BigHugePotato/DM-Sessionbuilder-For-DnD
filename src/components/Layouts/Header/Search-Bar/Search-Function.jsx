@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function SearchBar() {
+export function SearchFunction() {
     const [searchData, setSearchData] = useState(null);
     const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(false);
