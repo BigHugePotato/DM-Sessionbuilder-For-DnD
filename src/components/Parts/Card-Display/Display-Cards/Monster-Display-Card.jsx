@@ -60,7 +60,6 @@ export const MonsterDisplayCard = ({ monsterId }) => {
     img_main,
   } = monsterDetails || {};
 
-
   const LegendaryActions = (Lactions) => {
     return Lactions.map((action, index) => (
       <div key={index}>
@@ -129,18 +128,18 @@ export const MonsterDisplayCard = ({ monsterId }) => {
             />
           </div>
         )}
-        <div className={style.statsContainer}>
-          <div className={style.acHpContainer}>
-            <div className={style.ac}>
-              <MdShield /> {armor_class || "N/A"}
-            </div>
-            <div className={style.hp}>HP: {hit_points || "N/A"}</div>
+        <div className={style.acHpContainer}>
+          <div className={style.ac}>
+            <MdShield /> {armor_class || "N/A"}
           </div>
-          <div className={style.speedContainer}>
-            <GiWalk /> Walk: {speed?.walk || "N/A"}
-            <GiBatWing /> Fly: {speed?.fly || "N/A"}
-            <TbSwimming /> Swim: {speed?.swim || "N/A"}
-          </div>
+          <div className={style.hp}>HP: {hit_points || "N/A"}</div>
+        </div>
+      </div>
+      <div className={style.statsContainer}>
+        <div className={style.speedContainer}>
+          <GiWalk /> : {speed?.walk || "N/A"}{" "}
+          <GiBatWing /> : {speed?.fly || "N/A"}{" "}
+          <TbSwimming /> : {speed?.swim || "N/A"}
         </div>
       </div>
       <div className={style.bottomSection}>
