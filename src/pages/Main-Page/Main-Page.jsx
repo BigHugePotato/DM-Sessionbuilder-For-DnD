@@ -1,5 +1,5 @@
-import { Header } from "../../components/Layouts/Header/Header";
-import { MainLayout } from "../../components/Layouts/Main-Layout/Main-Layout";
+import { Header } from "../../Layouts/Header/Header";
+import { MainLayout } from "../../layouts/Main-Layout/Main-Layout";
 
 export function MainPage() {
   return (
