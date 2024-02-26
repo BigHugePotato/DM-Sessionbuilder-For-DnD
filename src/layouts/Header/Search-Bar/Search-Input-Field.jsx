@@ -1,7 +1,9 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { useSearchStore } from "../../../stores/Search-Store";
 
-export default function BasicTextFields() {
+export default function SearchInputField() {
+  const { search, setSearch } = useSearchStore();
   return (
     <Box
       component="form"
@@ -11,7 +13,13 @@ export default function BasicTextFields() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      <TextField
+        id="outlined-basic"
+        label="Outlined"
+        variant="outlined"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
     </Box>
   );
 }

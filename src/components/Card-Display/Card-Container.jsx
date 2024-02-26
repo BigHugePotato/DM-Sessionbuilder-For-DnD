@@ -1,34 +1,20 @@
-import { useState, useEffect } from "react";
-import { MonsterDisplayCard } from "./Display-Cards/Monster-Display-Card"
+import { MonsterDisplayCard } from "./Display-Cards/Monster-Display-Card";
+import { useSearchStore } from "../../stores/Search-Store";
+import { useEffect } from "react";
 import style from "./Card-Container.module.css";
 
 export function CardContainer() {
-  const [monsterIndexes, setMonsterIndexes] = useState([]);
- 
-    useEffect(() => {
-    const fetchMonsterIndexes = async () => {
-      try {
-        const response = await fetch(`https://api.open5e.com/v1/monsters/?limit=10`, {
-          headers: { Accept: 'application/json' }
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch monster indexes');
-        }
-        const data = await response.json();
-        setMonsterIndexes(data.results);
-      } catch (error) {
-        console.error("Error fetching monster indexes:", error);
-      }
-    };
+  const { initialData, searchData, fetchInitialData } = useSearchStore();
 
+  useEffect(() => {
+    fetchInitialData();
+  }, [fetchInitialData]);
 
-    fetchMonsterIndexes();
-  }, []);
-
+  const dataToDisplay = searchData || initialData;
 
   return (
     <div className={style.cardContainer}>
-      {monsterIndexes.map((monster, index) => (
+      {dataToDisplay.map((monster, index) => (
         <MonsterDisplayCard key={index} monsterId={monster.slug} />
       ))}
     </div>
