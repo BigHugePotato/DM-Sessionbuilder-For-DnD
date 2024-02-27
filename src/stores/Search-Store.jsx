@@ -1,15 +1,17 @@
 import { create } from "zustand";
+import debounce from "lodash/debounce";
 
-export const useSearchStore = create((set) => ({
+export const useSearchStore = create((set, get) => ({
   initialData: [],
   searchData: null,
   search: "",
   isLoading: false,
   error: null,
+  cache: {},
   fetchInitialData: async () => {
     try {
       const response = await fetch(
-        `https://api.open5e.com/v1/monsters/?limit=10`,
+        `https://api.open5e.com/v1/monsters/?limit=9`,
         {
           headers: { Accept: "application/json" },
         }
@@ -24,9 +26,13 @@ export const useSearchStore = create((set) => ({
       set({ error: error.message });
     }
   },
-  setSearch: (search) => set({ search }),
+  setSearch: (search) => {
+     set({ search });
+     get().debouncedPerformSearch();
+  },
   performSearch: async () => {
-    if (!state.search.trim()) {
+    const currentState = get()
+    if (!currentState.search.trim() || currentState.search.length <= 2) {
       set({ searchData: null });
       return;
     }
@@ -35,7 +41,9 @@ export const useSearchStore = create((set) => ({
 
     try {
       const response = await fetch(
-        `https://api.open5e.com/monsters/?search=${state.search}`
+        `https://api.open5e.com/monsters/?search=${encodeURIComponent(
+          currentState.search
+        )}&limit=9`
       );
       if (!response.ok) throw new Error("Failed to fetch search results");
 
@@ -47,4 +55,7 @@ export const useSearchStore = create((set) => ({
       set({ isLoading: false });
     }
   },
+  debouncedPerformSearch: debounce(() => {
+    get().performSearch();
+  }, 300),
 }));

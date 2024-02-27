@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import { useSearchStore } from "../../../stores/Search-Store";
 
 export default function SearchInputField() {
-  const { search, setSearch } = useSearchStore();
+  const { search, setSearch, performSearch } = useSearchStore();
   return (
     <Box
       component="form"
