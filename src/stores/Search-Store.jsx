@@ -27,13 +27,20 @@ export const useSearchStore = create((set, get) => ({
     }
   },
   setSearch: (search) => {
-     set({ search });
-     get().debouncedPerformSearch();
+    set({ search });
+    get().debouncedPerformSearch();
   },
   performSearch: async () => {
-    const currentState = get()
-    if (!currentState.search.trim() || currentState.search.length <= 2) {
+    const currentState = get();
+    const { search, cache } = currentState;
+
+    if (!search.trim() || search.length <= 2) {
       set({ searchData: null });
+      return;
+    }
+
+    if (cache[search]) {
+      set({ searchData: cache[search], isLoading: false });
       return;
     }
 
@@ -42,18 +49,23 @@ export const useSearchStore = create((set, get) => ({
     try {
       const response = await fetch(
         `https://api.open5e.com/monsters/?search=${encodeURIComponent(
-          currentState.search
+          search
         )}&limit=9`
       );
       if (!response.ok) throw new Error("Failed to fetch search results");
 
       const data = await response.json();
-      set({ searchData: data.results });
+
+      set((state) => ({
+        searchData: data.results,
+        isLoading: false,
+        cache: { ...state.cache, [search]: data.results },
+      }));
     } catch (error) {
-      set({ error: error.message });
-    } finally {
-      set({ isLoading: false });
+      set({ error: error.message, isLoading: false });
     }
+    console.log('Updated cache:', cache);
+
   },
   debouncedPerformSearch: debounce(() => {
     get().performSearch();

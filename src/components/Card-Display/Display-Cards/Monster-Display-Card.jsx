@@ -29,7 +29,7 @@ export const MonsterDisplayCard = ({ monsterId }) => {
           );
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setMonsterDetails(data);
       } catch (error) {
         console.error("Failed to fetch monster details:", error);
