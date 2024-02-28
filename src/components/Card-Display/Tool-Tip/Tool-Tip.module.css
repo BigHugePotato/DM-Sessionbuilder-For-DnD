@@ -13,5 +13,6 @@
   padding: 5px;
   border-radius: 5px;
   white-space: nowrap;
-  z-index: 1; /* Ensure the tooltip appears above other content */
+  z-index: 1;
+  overflow: visible;
 }
