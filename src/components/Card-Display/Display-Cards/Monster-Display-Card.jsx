@@ -11,6 +11,7 @@ import { CardSkills } from "../Card-Build-Components/Card-Skills";
 import { CardSaves } from "../Card-Build-Components/Card-Saves";
 import { CardLegendaryActions } from "../Card-Build-Components/Card-LegendaryActions";
 import { CardReactions } from "../Card-Build-Components/Card-Reactions";
+import { SelectButton } from "../Card-Build-Components/Card-Select";
 
 export const MonsterDisplayCard = ({ monsterId }) => {
   const [monsterDetails, setMonsterDetails] = useState(null);
@@ -69,6 +70,7 @@ export const MonsterDisplayCard = ({ monsterId }) => {
   return (
     <div className={style.monsterCard}>
       <h2 className={style.name}>{name}</h2>
+      <SelectButton cardId={monsterId}/>
       <div className={style.topSection}>
         {img_main && (
           <div className={style.imageContainer}>

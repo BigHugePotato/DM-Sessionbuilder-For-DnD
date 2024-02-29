@@ -70,4 +70,13 @@ export const useSearchStore = create((set, get) => ({
   debouncedPerformSearch: debounce(() => {
     get().performSearch();
   }, 300),
+  selectedCards: [],
+  toggleCardSelection: id => set(state => {
+    const isSelected = state.selectedCards.includes(id);
+    return {
+        selectedCards: isSelected ? 
+        state.selectedCards.filter(cardID => cardID !== id) :
+        [...state.selectedCards, id]
+    };
+  })
 }));

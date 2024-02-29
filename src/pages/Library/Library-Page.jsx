@@ -1,6 +1,6 @@
 import { Header } from "../../layouts/Header/Header";
-import { CardContainer } from "../../components/Card-Display/Card-Container";
 import { SideBar } from "../../components/Sidebar/Sidebar";
+import { SelectedCardContainer } from "../../components/Card-Display/Selected-Card-Container";
 
 export function LibraryPage() {
   return (
@@ -8,7 +8,7 @@ export function LibraryPage() {
       <Header />
       <main>
         <SideBar />
-        <CardContainer></CardContainer>
+        <SelectedCardContainer></SelectedCardContainer>
       </main>
     </div>
   );
