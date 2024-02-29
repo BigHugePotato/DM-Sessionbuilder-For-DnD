@@ -64,19 +64,21 @@ export const useSearchStore = create((set, get) => ({
     } catch (error) {
       set({ error: error.message, isLoading: false });
     }
-    console.log('Updated cache:', cache);
-
+    console.log("Updated cache:", cache);
   },
   debouncedPerformSearch: debounce(() => {
     get().performSearch();
   }, 300),
+
   selectedCards: [],
-  toggleCardSelection: id => set(state => {
-    const isSelected = state.selectedCards.includes(id);
-    return {
-        selectedCards: isSelected ? 
-        state.selectedCards.filter(cardID => cardID !== id) :
-        [...state.selectedCards, id]
-    };
-  })
+
+  toggleCardSelection: (id) =>
+    set((state) => {
+      const isSelected = state.selectedCards.includes(id);
+      return {
+        selectedCards: isSelected
+          ? state.selectedCards.filter((cardID) => cardID !== id)
+          : [...state.selectedCards, id],
+      };
+    }),
 }));
