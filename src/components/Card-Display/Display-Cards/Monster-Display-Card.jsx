@@ -13,7 +13,7 @@ import { CardLegendaryActions } from "../Card-Build-Components/Card-LegendaryAct
 import { CardReactions } from "../Card-Build-Components/Card-Reactions";
 import { SelectButton } from "../Card-Build-Components/Card-Select";
 
-export const MonsterDisplayCard = ({ monsterId }) => {
+export const MonsterDisplayCard = ({ monsterId, isSelected}) => {
   const [monsterDetails, setMonsterDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -68,7 +68,7 @@ export const MonsterDisplayCard = ({ monsterId }) => {
   } = monsterDetails || {};
 
   return (
-    <div className={style.monsterCard}>
+    <div className={`${style.monsterCard} ${isSelected ? style.highlighted : ""}`}>
       <h2 className={style.name}>{name}</h2>
       <SelectButton cardId={monsterId}/>
       <div className={style.topSection}>

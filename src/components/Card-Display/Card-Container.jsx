@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import style from "./Card-Container.module.css";
 
 export function CardContainer() {
-  const { initialData, searchData, fetchInitialData } = useSearchStore();
+  const { initialData, searchData, fetchInitialData, selectedCards } = useSearchStore();
 
   useEffect(() => {
     fetchInitialData();
@@ -15,7 +15,7 @@ export function CardContainer() {
   return (
     <div className={style.cardContainer}>
       {dataToDisplay.map((monster, index) => (
-        <MonsterDisplayCard key={index} monsterId={monster.slug} />
+        <MonsterDisplayCard key={index} monsterId={monster.slug} isSelected={selectedCards.includes(monster.slug)} />
       ))}
     </div>
   );
