@@ -13,7 +13,7 @@ import { CardLegendaryActions } from "../Card-Build-Components/Card-LegendaryAct
 import { CardReactions } from "../Card-Build-Components/Card-Reactions";
 import { SelectButton } from "../Card-Build-Components/Card-Select";
 
-export const MonsterDisplayCard = ({ monsterId, isSelected}) => {
+export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
   const [monsterDetails, setMonsterDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -68,9 +68,11 @@ export const MonsterDisplayCard = ({ monsterId, isSelected}) => {
   } = monsterDetails || {};
 
   return (
-    <div className={`${style.monsterCard} ${isSelected ? style.highlighted : ""}`}>
+    <div
+      className={`${style.monsterCard} ${isSelected ? style.highlighted : ""}`}
+    >
       <h2 className={style.name}>{name}</h2>
-      <SelectButton cardId={monsterId}/>
+      <SelectButton cardId={monsterId} />
       <div className={style.topSection}>
         {img_main && (
           <div className={style.imageContainer}>
@@ -81,8 +83,8 @@ export const MonsterDisplayCard = ({ monsterId, isSelected}) => {
       </div>
       <div className={style.statsContainer}>
         <div className={style.speedContainer}>
-          <GiWalk /> : {speed?.walk || "N/A"} <GiBatWing /> :{" "}
-          {speed?.fly || "N/A"} <TbSwimming /> : {speed?.swim || "N/A"}
+          <GiWalk /> : {speed?.walk || " "} <GiBatWing /> : {speed?.fly || " "}{" "}
+          <TbSwimming /> : {speed?.swim || " "}
         </div>
       </div>
       <div className={style.bottomSection}>
@@ -92,8 +94,12 @@ export const MonsterDisplayCard = ({ monsterId, isSelected}) => {
           conditionImmunities={condition_immunities}
           senses={senses}
         />
-        <CardLegendaryActions actions={legendary_actions || []} />
-        <CardReactions reactions={reactions || []} />
+        {legendary_actions && legendary_actions.length > 0 && (
+          <CardLegendaryActions actions={legendary_actions} />
+        )}
+        {reactions && reactions.length > 0 && (
+          <CardReactions reactions={reactions} />
+        )}
         <CardSkills skillsObj={skills} />
         <CardSaves saveValues={monsterDetails} />
       </div>

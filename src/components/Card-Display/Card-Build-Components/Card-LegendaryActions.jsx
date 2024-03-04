@@ -3,7 +3,12 @@ import style from "../Display-Cards/Monster-Card.module.css";
 
 
 
-export const CardLegendaryActions = ({ actions }) => (
+export const CardLegendaryActions = ({ actions }) => {
+  if (!actions || actions.length === 0) {
+    return null;
+  }
+  
+  return (
     <Tooltip content={
       <div>
         {actions.map((action, index) => (
@@ -16,3 +21,4 @@ export const CardLegendaryActions = ({ actions }) => (
       <span className={style.LegendaryActions}>Legendary Actions</span>
     </Tooltip>
   );
+};

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from "./Tool-Tip.module.css"; // Assuming you have CSS for the tooltip
+import style from "./Tool-Tip.module.css";
 
 export const Tooltip = ({ children, content }) => {
   const [isVisible, setIsVisible] = useState(false);
