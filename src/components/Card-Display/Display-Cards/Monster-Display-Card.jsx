@@ -2,10 +2,7 @@ import style from "./Monster-Card.module.css";
 import { CardImage } from "../Card-Build-Components/Card-Image";
 import { CardAcHp } from "../Card-Build-Components/Card-AcHp";
 import { useState, useEffect } from "react";
-import { Tooltip } from "../Tool-Tip/Tool-Tip";
-import { GiWalk } from "react-icons/gi";
-import { GiBatWing } from "react-icons/gi";
-import { TbSwimming } from "react-icons/tb";
+import { CardSpeed } from "../Card-Build-Components/Card-Speed";
 import { CardCreatureDetails } from "../Card-Build-Components/Card-Creature-Details";
 import { CardSkills } from "../Card-Build-Components/Card-Skills";
 import { CardSaves } from "../Card-Build-Components/Card-Saves";
@@ -83,8 +80,7 @@ export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
       </div>
       <div className={style.statsContainer}>
         <div className={style.speedContainer}>
-          <GiWalk /> : {speed?.walk || " "} <GiBatWing /> : {speed?.fly || " "}{" "}
-          <TbSwimming /> : {speed?.swim || " "}
+          <CardSpeed speed={speed} />
         </div>
       </div>
       <div className={style.bottomSection}>
