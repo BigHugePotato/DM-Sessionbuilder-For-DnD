@@ -1,5 +1,5 @@
 import style from "../Display-Cards/Monster-Card.module.css";
-import { Tooltip } from "../Tool-Tip/Tool-Tip";
+import { HoverTooltip } from "../Tool-Tip/Tool-Tip";
 
 export const CardCreatureDetails = ({ immunities, resistances, conditionImmunities, senses }) => {
     
@@ -12,24 +12,24 @@ export const CardCreatureDetails = ({ immunities, resistances, conditionImmuniti
   return (
     <div className={style.detailsContainer}>
       {immunities && (
-        <Tooltip content={immunities}>
+        <HoverTooltip content={immunities}>
           <span>Immunities</span>
-        </Tooltip>
+        </HoverTooltip>
       )}
       {resistances && (
-        <Tooltip content={resistances}>
+        <HoverTooltip content={resistances}>
           <span>Resistances</span>
-        </Tooltip>
+        </HoverTooltip>
       )}
       {conditionImmunities && (
-        <Tooltip content={conditionImmunities}>
+        <HoverTooltip content={conditionImmunities}>
           <span>Condition Immunities</span>
-        </Tooltip>
+        </HoverTooltip>
       )}
       {senses && (
-        <Tooltip content={senses}>
+        <HoverTooltip content={senses}>
           <span>Senses</span>
-        </Tooltip>
+        </HoverTooltip>
       )}
     </div>
   );

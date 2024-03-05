@@ -1,4 +1,4 @@
-import { Tooltip } from "../Tool-Tip/Tool-Tip";
+import { HoverTooltip } from "../Tool-Tip/Tool-Tip";
 import style from "../Display-Cards/Monster-Card.module.css";
 
 export const CardSaves = ({ monsterDetails }) => {
@@ -19,8 +19,8 @@ export const CardSaves = ({ monsterDetails }) => {
   );
 
   return (
-    <Tooltip content={<div>{saveValues}</div>}>
+    <HoverTooltip content={<div>{saveValues}</div>}>
       <span className={style.savesTrigger}>Saves</span>
-    </Tooltip>
+    </HoverTooltip>
   );
 };

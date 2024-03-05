@@ -1,4 +1,4 @@
-import { Tooltip } from "../Tool-Tip/Tool-Tip";
+import { HoverTooltip } from "../Tool-Tip/Tool-Tip";
 import style from "../Display-Cards/Monster-Card.module.css";
 
 export const CardReactions = ({ reactions }) => {
@@ -6,7 +6,7 @@ export const CardReactions = ({ reactions }) => {
     return null;
   }
   return(
-      <Tooltip
+      <HoverTooltip
     content={
       <div>
         {reactions.map((reaction, index) => (
@@ -18,7 +18,7 @@ export const CardReactions = ({ reactions }) => {
     }
   >
     <span className={style.Reactions}>Reactions</span>
-  </Tooltip>
+  </HoverTooltip>
   )
 
 };

@@ -1,4 +1,4 @@
-import { Tooltip } from "../Tool-Tip/Tool-Tip";
+import { HoverTooltip } from "../Tool-Tip/Tool-Tip";
 import style from "../Display-Cards/Monster-Card.module.css";
 
 
@@ -9,7 +9,7 @@ export const CardLegendaryActions = ({ actions }) => {
   }
   
   return (
-    <Tooltip content={
+    <HoverTooltip content={
       <div>
         {actions.map((action, index) => (
           <div key={index}>
@@ -19,6 +19,6 @@ export const CardLegendaryActions = ({ actions }) => {
       </div>
     }>
       <span className={style.LegendaryActions}>Legendary Actions</span>
-    </Tooltip>
+    </HoverTooltip>
   );
 };
