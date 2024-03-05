@@ -6,17 +6,6 @@ import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Typography from "@mui/material/Typography";
 import { useState, React } from "react";
 
-// const StyledTooltip = styled(({ className, content, ...props }) => (
-//   <Tooltip {...props} title={content} classes={{ popper: className }} />
-// ))(({ theme }) => ({
-//   [`& .${tooltipClasses.tooltip}`]: {
-//     backgroundColor: "#f5f5f9",
-//     color: "rgba(0, 0, 0, 0.87)",
-//     maxWidth: 220,
-//     fontSize: theme.typography.pxToRem(12),
-//     border: "1px solid #dadde9",
-//   },
-// }));
 
 export function HoverTooltip({ children, content }) {
   const [open, setOpen] = useState(false);
@@ -26,7 +15,6 @@ export function HoverTooltip({ children, content }) {
   };
 
   const handleTooltipOpen = () => {
-    console.log("Tooltip should open");
     setOpen(true);
   };
 
@@ -34,7 +22,28 @@ export function HoverTooltip({ children, content }) {
     <ClickAwayListener onClickAway={handleTooltipClose}>
       <div>
         <Tooltip
-          PopperProps={{ disablePortal: true }}
+          onClose={handleTooltipClose}
+          open={open}
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener
+          title={content}
+        >
+          <Button onClick={handleTooltipOpen}>{children}</Button> {/* Use Button for testing */}
+        </Tooltip>
+      </div>
+    </ClickAwayListener>
+  );
+}
+
+
+
+    <ClickAwayListener onClickAway={handleTooltipClose}>
+      <div>
+        <HtmlTooltip
+          PopperProps={{
+            disablePortal: true,
+          }}
           onClose={handleTooltipClose}
           open={open}
           disableFocusListener
@@ -45,8 +54,7 @@ export function HoverTooltip({ children, content }) {
           <div onClick={handleTooltipOpen} style={{ cursor: "pointer" }}>
             {children}
           </div>
-        </Tooltip>
+        </HtmlTooltip>
       </div>
     </ClickAwayListener>
   );
-}
