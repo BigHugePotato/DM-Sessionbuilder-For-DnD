@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import debounce from "lodash/debounce";
+import { values } from "lodash";
 
 export const useSearchStore = create((set, get) => ({
   initialData: [],
@@ -8,6 +9,19 @@ export const useSearchStore = create((set, get) => ({
   isLoading: false,
   error: null,
   cache: {},
+  filters: {
+    monster: true,
+    spell: true,
+    // Add more categories as needed
+  },
+  setFilter: (filter, value) => {
+    set((state) => ({
+      filters: {
+        ...state.filters,
+        [filter]: value,
+      },
+    }));
+  },
   fetchInitialData: async () => {
     try {
       const response = await fetch(
