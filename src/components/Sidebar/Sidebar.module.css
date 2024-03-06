@@ -1,6 +1,8 @@
 .sideBar {
-    width: 2%;
+    width: 20%;
     background-color: rgb(47, 35, 16);
-    height: auto;
-    font-size: 0.3rem;
+    font-size: 1.3rem;
+    display: flex;
+    height: 300px;
+    flex-direction: column;
 }

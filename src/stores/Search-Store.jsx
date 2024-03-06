@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import debounce from "lodash/debounce";
-import { values } from "lodash";
 
 export const useSearchStore = create((set, get) => ({
   initialData: [],
@@ -10,9 +9,8 @@ export const useSearchStore = create((set, get) => ({
   error: null,
   cache: {},
   filters: {
-    monster: true,
-    spell: true,
-    // Add more categories as needed
+    monster: false,
+    spell: false,
   },
   setFilter: (filter, value) => {
     set((state) => ({
@@ -34,16 +32,23 @@ export const useSearchStore = create((set, get) => ({
         throw new Error("Failed to fetch initial monster data");
       }
       const data = await response.json();
-      set({ initialData: data.results });
+      console.log("Fetched data:", data.results); // Log the fetched data
+
+      const filteredData = data.results.filter(
+        (item) => get().filters[item.type]
+      );
+      set({ initialData: filteredData });
     } catch (error) {
       console.error("Error fetching initial data:", error);
       set({ error: error.message });
     }
   },
+
   setSearch: (search) => {
     set({ search });
     get().debouncedPerformSearch();
   },
+
   performSearch: async () => {
     const currentState = get();
     const { search, cache } = currentState;
@@ -70,8 +75,12 @@ export const useSearchStore = create((set, get) => ({
 
       const data = await response.json();
 
+      const filteredSearchData = data.results.filter(
+        (item) => get().filters[item.type]
+      );
+
       set((state) => ({
-        searchData: data.results,
+        searchData: filteredSearchData,
         isLoading: false,
         cache: { ...state.cache, [search]: data.results },
       }));
