@@ -9,6 +9,7 @@ import { CardSaves } from "../Card-Build-Components/Card-Saves";
 import { CardLegendaryActions } from "../Card-Build-Components/Card-LegendaryActions";
 import { CardReactions } from "../Card-Build-Components/Card-Reactions";
 import { SelectButton } from "../Card-Build-Components/Card-Select";
+import { useSearchStore } from "../../../stores/Search-Store";
 
 export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
   const [monsterDetails, setMonsterDetails] = useState(null);
@@ -18,32 +19,27 @@ export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
   useEffect(() => {
     if (!monsterId) return;
 
-    const fetchMonsterDetails = async () => {
+    const fetchDetails = async () => {
+      setLoading(true); // Ensure loading is true at the start of data fetch
       try {
-        const response = await fetch(
-          `https://api.open5e.com/v1/monsters/${monsterId}`,
-          {
-            method: "GET",
-            headers: { Accept: "application/json" },
-          }
-        );
-        if (!response.ok) {
-          throw new Error(
-            `Failed to fetch details for monster with index ${monsterId}`
-          );
-        }
-        const data = await response.json();
-        // console.log(data);
-        setMonsterDetails(data);
-      } catch (error) {
-        console.error("Failed to fetch monster details:", error);
-        setError(error);
+        // Trigger the fetchCardDetails action and wait for it to complete
+        await useSearchStore.getState().fetchCardDetails('monsters', monsterId);
+
+        // After fetching, access the stored cardDetails from the store
+        const fetchedDetails = useSearchStore.getState().cardDetails;
+        
+        // Update the component state with the fetched data
+        setMonsterDetails(fetchedDetails);
+        setError(null); // Clear any previous errors
+      } catch (fetchError) {
+        console.error("Failed to fetch monster details:", fetchError);
+        setError(fetchError);
       } finally {
-        setLoading(false);
+        setLoading(false); // Ensure loading is set to false after fetch completes
       }
     };
 
-    fetchMonsterDetails();
+    fetchDetails();
   }, [monsterId]);
 
   if (loading) return <div>Loading...</div>;
