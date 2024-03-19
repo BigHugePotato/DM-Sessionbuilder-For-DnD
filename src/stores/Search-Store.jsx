@@ -8,10 +8,52 @@ export const useSearchStore = create((set, get) => ({
   isLoading: false,
   error: null,
   cache: {},
+  selectedCards: [],
   filters: {
     monster: false,
     spell: false,
   },
+
+  // Generic fetchData function
+  fetchData: async (url, options = {}) => {
+    try {
+      const response = await fetch(url, {
+        headers: { Accept: "application/json" },
+        ...options,
+      });
+      if (!response.ok) throw new Error(`Failed to fetch data from ${url}`);
+      const data = await response.json();
+      return data; // Return the fetched data for use in specific fetching functions
+    } catch (error) {
+      console.error("Fetch error:", error);
+      throw error; // Rethrow to allow specific fetching functions to handle errors
+    }
+  },
+
+  // Updated fetchInitialData using fetchData
+  fetchInitialData: async () => {
+    try {
+      const data = await get().fetchData(
+        `https://api.open5e.com/v1/monsters/?limit=9`
+      );
+      set({ initialData: data.results });
+    } catch (error) {
+      set({ error: error.message });
+    }
+  },
+
+  // Updated fetchCardDetails using fetchData
+  fetchCardDetails: async (cardType, cardId) => {
+    try {
+      const data = await get().fetchData(
+        `https://api.open5e.com/v1/${cardType}/${cardId}`
+      );
+      set({ cardDetails: data }); // Assuming you're storing individual card details
+    } catch (error) {
+      set({ error: error.message });
+    }
+  },
+
   setFilter: (filter, value) => {
     set((state) => ({
       filters: {
@@ -19,25 +61,6 @@ export const useSearchStore = create((set, get) => ({
         [filter]: value,
       },
     }));
-  },
-  fetchInitialData: async () => {
-    try {
-      const response = await fetch(
-        `https://api.open5e.com/v1/monsters/?limit=9`,
-        {
-          headers: { Accept: "application/json" },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch initial monster data");
-      }
-      const data = await response.json();
-
-      set({ initialData: data.results });
-    } catch (error) {
-      console.error("Error fetching initial data:", error);
-      set({ error: error.message });
-    }
   },
 
   setSearch: (search) => {
@@ -89,8 +112,6 @@ export const useSearchStore = create((set, get) => ({
     get().performSearch();
   }, 300),
 
-  selectedCards: [],
-
   toggleCardSelection: (id) =>
     set((state) => {
       const isSelected = state.selectedCards.includes(id);
@@ -100,29 +121,4 @@ export const useSearchStore = create((set, get) => ({
           : [...state.selectedCards, id],
       };
     }),
-
-  // Inside your Zustand store
-  fetchCardDetails: async (cardType, cardId) => {
-    try {
-      const response = await fetch(
-        `https://api.open5e.com/v1/${cardType}/${cardId}`,
-        {
-          headers: { Accept: "application/json" },
-        }
-      );
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch details for ${cardType} with ID ${cardId}`
-        );
-      }
-      const data = await response.json();
-
-      // Assuming you want to store the fetched card details in a generic way
-      // You might need a way to store multiple card details if they are fetched simultaneously
-      set({ cardDetails: data });
-    } catch (error) {
-      console.error("Failed to fetch card details:", error);
-      set({ error: error.message });
-    }
-  },
 }));
