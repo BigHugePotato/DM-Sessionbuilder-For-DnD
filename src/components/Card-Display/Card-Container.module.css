@@ -1,11 +1,12 @@
 .cardContainer, .selectedCardContainer {
     width: 96%;
     margin: auto; /* Centers the container */
-    background-color: #FAF8F5; /* Light background for contrast with cards */
+    background-color: #f0e0c8; /* Light background for contrast with cards */
     padding: 20px; /* Adds some padding inside the container */
     gap: 20px; /* Space between cards */
     border: 1px solid #D3C0AC; /* Subtle border */
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
     border-radius: 8px; /* Rounded corners */

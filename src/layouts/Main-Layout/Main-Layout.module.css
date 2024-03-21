@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   gap: 10px; /* Adds some space between the buttons */
+  margin: 5px;
 }
 
 .tabs button {

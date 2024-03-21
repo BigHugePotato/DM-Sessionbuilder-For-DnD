@@ -58,6 +58,22 @@ export const useSearchStore = create((set, get) => ({
     }));
   },
 
+  applyFilters: () => {
+    const { initialData, filters } = get(); // Get the current data and filters from the state
+  
+    const filteredData = initialData.filter(item => {
+      // Example filtering logic, adjust according to your actual data structure and filters
+      const matchesHpRange = item.hp >= filters.hpRange[0] && item.hp <= filters.hpRange[1];
+      const matchesAcRange = item.ac >= filters.acRange[0] && item.ac <= filters.acRange[1];
+      const matchesHasMagic = filters.hasMagic ? item.hasMagic === filters.hasMagic : true;
+  
+      // Combine more filter conditions as needed
+      return matchesHpRange && matchesAcRange && matchesHasMagic;
+    });
+  
+    set({ searchData: filteredData }); // Update searchData with filtered results
+  },
+
   setSearch: (search) => {
     set({ search });
     get().debouncedPerformSearch();
