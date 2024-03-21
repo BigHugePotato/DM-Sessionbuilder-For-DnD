@@ -1,8 +1,29 @@
 .MainLayout {
-    display: flex;
+  display: flex;
 }
 
 .tabs {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adds some space between the buttons */
+}
+
+.tabs button {
+  background-color: #c19a6b; /* Gold-like color to match the theme */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: bold;
+  color: #fff; /* White text for better contrast */
+  border-radius: 5px; /* Slightly rounded corners for a softer look */
+}
+
+.tabs button:hover {
+  background-color: #d4a76a; /* Lighter shade on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.tabs button.active {
+  background-color: #ab824d; /* Darker shade for the active tab */
 }

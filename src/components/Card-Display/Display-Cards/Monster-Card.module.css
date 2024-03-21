@@ -2,47 +2,62 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between; /* Ensure space distribution */
   border-radius: 8px;
   overflow: hidden;
   width: 180px;
-  border: 1px solid;
+  background-color: #F4EFE8; /* A light, theme-appropriate background */
+  border: 1px solid #D3C0AC;
+  transition: transform 0.2s, border-color 0.2s; /* More subtle transition */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px; /* Added padding */
+  margin: 5px;
+  font-family: 'Merriweather', serif; /* Example fantasy-style font */}
+
+.monsterCard:hover {
+  transform: scale(1.03); /* Slight enlargement */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  border-color: #C19A6B; /* Themed border color on hover */
+}
+
+.highlighted {
+  border: 2px solid #AB824D; /* Distinct border color for selected cards */
 }
 
 h2 {
-  font-size: 0.8rem;
-  margin: 3px;
+  font-size: 1rem; /* Adjusted for better legibility */
+  color: #5D4B3C; /* Themed text color */
 }
 
-.topSection {
-  display: flex;
-  padding: 0px;
+.topSection, .bottomSection {
+  width: 100%; /* Use the full width of the card */
 }
 
-.textbox {
-  display: flex;
-  flex-direction: column;
+.selectButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #C19A6B; /* Themed icon color */
+}
+
+.imageContainer {
+  width: 100%; /* Allow the image to use the full width available */
+  height: auto; /* Adjust height automatically */
+  overflow: hidden; /* Hide overflow */
+}
+
+.monsterImage {
+  width: 100%; /* Ensure the image covers the width */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .bottomSection {
   display: grid;
-  flex-direction: column;
-  grid-template-columns: 1fr 1fr;
-  padding: 5px;
-  border-top: 1px solid #ccc;
-  font-size: 0.7rem;
-}
-
-.imageContainer {
-  max-width: 60%;
-  height: 80px;
-  margin: 0 5px 0 0;
-}
-
-.monsterImage {
-  max-width: 100%;
-  height: auto;
-}
-
-.highlighted {
-  border: 2px solid yellow; /* Example highlight style */
+  grid-template-columns: 1fr 1fr; /* Maintain two-column layout */
+  padding: 10px; /* Adjust padding for spacing */
+  border-top: 1px solid #E3DCC0; /* Lighter border color for internal separation */
+  font-size: 0.8rem; /* Adjusted font size for better readability */
 }

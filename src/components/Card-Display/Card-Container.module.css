@@ -1,9 +1,12 @@
-.cardContainer, 
-.selectedCardContainer {
+.cardContainer, .selectedCardContainer {
     width: 96%;
-    background-color: rgb(186, 175, 158);
-    height: auto;
-    border: 1px solid;
+    margin: auto; /* Centers the container */
+    background-color: #FAF8F5; /* Light background for contrast with cards */
+    padding: 20px; /* Adds some padding inside the container */
+    gap: 20px; /* Space between cards */
+    border: 1px solid #D3C0AC; /* Subtle border */
     display: flex;
     flex-wrap: wrap;
-}
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+  }

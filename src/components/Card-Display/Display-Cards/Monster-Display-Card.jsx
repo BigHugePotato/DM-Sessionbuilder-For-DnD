@@ -65,7 +65,7 @@ export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
       className={`${style.monsterCard} ${isSelected ? style.highlighted : ""}`}
     >
       <h2 className={style.name}>{name}</h2>
-      <SelectButton cardId={monsterId} />
+      <SelectButton cardId={monsterId} className={style.selectButton}/>
       <div className={style.topSection}>
         {img_main && (
           <div className={style.imageContainer}>

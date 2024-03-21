@@ -19,16 +19,29 @@ export function MainLayout() {
       <div>
         {/* Tab navigation */}
         <div className={style.tabs}>
-          <button onClick={() => changeTab('Monsters')}>Monsters</button>
-          <button onClick={() => changeTab('Spells')}>Spells</button>
-          <button onClick={() => changeTab('NPCs')}>NPCs</button>
+          <button
+            className={activeTab === "Monsters" ? "active" : ""}
+            onClick={() => changeTab("Monsters")}>
+            Monsters
+          </button>
+          <button
+            className={activeTab === "Spells" ? "active" : ""}
+            onClick={() => changeTab("Spells")}>
+            Spells
+          </button>
+          <button
+            className={activeTab === "NPCs" ? "active" : ""}
+            onClick={() => changeTab("NPCs")}>
+            NPCs
+          </button>
           {/* Add more tabs as needed */}
         </div>
-
         {/* Conditional rendering based on the active tab */}
-        {activeTab === 'Monsters' && <CardContainer category="monsters" />}
-        {activeTab === 'Spells' && <div>Spells content here</div>} {/* Placeholder */}
-        {activeTab === 'NPCs' && <div>NPCs content here</div>} {/* Placeholder */}
+        {activeTab === "Monsters" && <CardContainer category="monsters" />}
+        {activeTab === "Spells" && <div>Spells content here</div>}{" "}
+        {/* Placeholder */}
+        {activeTab === "NPCs" && <div>NPCs content here</div>}{" "}
+        {/* Placeholder */}
         {/* Add more conditions for other categories */}
       </div>
       <InitiativeBar />

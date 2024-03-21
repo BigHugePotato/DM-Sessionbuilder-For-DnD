@@ -1,9 +1,34 @@
 .header {
-  background-color: #333;
-  color: rgb(203, 74, 74);
+  background-color: #1F2933; /* Darker tone for header background */
+  color: #F4ECD8; /* Light, warm tone for text, suitable for dark themes */
   text-align: center;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0.5rem 0;
+}
+
+.header h1 {
+  font-family: 'Georgia', serif; /* A more 'fantasy' feel font */
+  font-weight: bold;
+}
+
+.Logo {
+  font-size: 2rem; /* Make the dragon icon larger */
+  color: #C19A6B; /* Gold-like color for the logo */
+}
+
+.header button {
+  background-color: #3E4C59; /* Slightly lighter than header bg for contrast */
+  color: #FFF;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.header button:hover {
+  background-color: #556172; /* Lighter on hover */
+  transform: translateY(-2px); /* Slight lift effect */
 }

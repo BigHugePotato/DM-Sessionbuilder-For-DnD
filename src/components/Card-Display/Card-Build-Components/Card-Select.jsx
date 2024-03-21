@@ -5,5 +5,5 @@ export const SelectButton = ({ cardId }) => {
     (state) => state.toggleCardSelection
   );
 
-  return <button onClick={() => toggleCardSelection(cardId)}>Select</button>;
+  return <button onClick={() => toggleCardSelection(cardId)} >Select</button>;
 };

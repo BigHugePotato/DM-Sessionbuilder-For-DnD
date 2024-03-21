@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import debounce from "lodash/debounce";
+import { initialFilterState, updateFilter } from "../assets/filters";
 
 export const useSearchStore = create((set, get) => ({
   initialData: [],
@@ -9,10 +10,7 @@ export const useSearchStore = create((set, get) => ({
   error: null,
   cache: {},
   selectedCards: [],
-  filters: {
-    monster: false,
-    spell: false,
-  },
+  filters: initialFilterState,
 
   // Generic fetchData function
   fetchData: async (url, options = {}) => {
@@ -54,12 +52,9 @@ export const useSearchStore = create((set, get) => ({
     }
   },
 
-  setFilter: (filter, value) => {
+  setFilter: (filterName, value) => {
     set((state) => ({
-      filters: {
-        ...state.filters,
-        [filter]: value,
-      },
+      filters: updateFilter(state.filters, filterName, value),
     }));
   },
 
