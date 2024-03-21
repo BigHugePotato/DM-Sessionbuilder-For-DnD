@@ -1,30 +1,63 @@
+import { useState } from "react";
 import style from "./Sidebar.module.css";
-import { useSearchStore } from "../../stores/Search-Store";
 
 export function SideBar() {
-  const { filters, setFilter } = useSearchStore((state) => ({
-    filters: state.filters,
-    setFilter: state.setFilter,
-  }));
+  // State to manage sidebar visibility
+  const [isVisible, setIsVisible] = useState(true);
 
-  const handleChange = (event) => {
-    const { name, checked } = event.target;
-    setFilter(name, checked);
+  // Function to toggle sidebar visibility
+  const toggleSidebar = () => {
+    setIsVisible(!isVisible);
   };
 
   return (
-    <div className={style.sideBar}>
-      {Object.entries(filters).map(([filterName, value]) => (
-        <label key={filterName}>
-          <input
-            type="checkbox"
-            name="filterName"
-            checked={value}
-            onChange={handleChange}
-          />
-          {filterName}
-        </label>
-      ))}
+    <div className={style.sidebarContainer}>
+      <div
+        className={`${style.sideBar} ${
+          isVisible ? style.visible : style.hidden
+        }`}
+      >
+        {isVisible && (
+          <div>
+            <h3>Filters</h3>
+            {/* Placeholder for a slider filter */}
+            <div>
+              <label htmlFor="hpRange">HP Range:</label>
+              <input
+                type="range"
+                id="hpRange"
+                name="hpRange"
+                min="0"
+                max="300"
+              />
+            </div>
+
+            {/* Placeholder for another slider filter */}
+            <div>
+              <label htmlFor="acRange">AC Range:</label>
+              <input
+                type="range"
+                id="acRange"
+                name="acRange"
+                min="0"
+                max="30"
+              />
+            </div>
+
+            {/* Placeholder for a checkbox filter */}
+            <div>
+              <label>
+                <input type="checkbox" name="hasMagic" /> Has Magic
+              </label>
+            </div>
+
+            {/* Add more filters as needed */}
+          </div>
+        )}
+      </div>
+      <button onClick={toggleSidebar} className={style.toggleButton}>
+        {isVisible ? "<" : ">"}
+      </button>
     </div>
   );
 }

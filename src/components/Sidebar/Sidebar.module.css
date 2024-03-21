@@ -1,8 +1,73 @@
-.sideBar {
-    width: 20%;
-    background-color: rgb(47, 35, 16);
-    font-size: 1.3rem;
-    display: flex;
-    height: 300px;
-    flex-direction: column;
+.sidebarContainer {
+    position: fixed; /* Make the container fixed position */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    height: 100%; /* Full height */
+    display: flex; /* Use flexbox to position the sidebar and button */
+    align-items: center; /* Center items vertically */
+    transition: transform 0.3s ease; /* Smooth transition for sliding in/out */
+    pointer-events: none;
+  }
+
+  .sideBar {
+    width: 250px; /* Adjust the width as needed */
+    background-color: #2c3e50; /* Dark background */
+    color: #ecf0f1; /* Light text color */
+    padding: 15px; /* Padding inside the sidebar */
+    height: 100%; /* Full height */
+    transition: transform 0.3s ease; /* Smooth transition */
+    transform: translateX(0); /* Initialize transformation */
+    pointer-events: auto;
+  }
+  
+  .visible {
+    transform: translateX(0); /* Show the sidebar */
+  }
+  
+  .hidden {
+    transform: translateX(-100%); /* Hide the sidebar completely, including background */
 }
+  
+  /* Style for the toggle button */
+  .sideBar button {
+    background-color: #3498db; /* Blue color for the button */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Button padding */
+    cursor: pointer; /* Change cursor to pointer */
+    margin-bottom: 20px; /* Spacing below the button */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Style for filter labels and inputs */
+  .sideBar label,
+  .sideBar input {
+    display: block; /* Block display for full width */
+    margin-bottom: 10px; /* Spacing between filters */
+  }
+  
+  /* Style for range inputs (sliders) */
+  .sideBar input[type="range"] {
+    width: 100%; /* Full width */
+  }
+
+  .toggleButton {
+    margin-left: 0; /* Adjust based on the button's size to partially hide it */
+    background-color: #3498db; /* Button color */
+    color: rgb(175, 34, 34); /* Button text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Button padding */
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 5px; /* Rounded corners */
+    position: absolute; /* Absolute position to follow the container's movement */
+    left: 100%; /* Position the button to the right edge of the sidebarContainer */
+    top: 50%; /* Center the button vertically */
+    transform: translateY(-50%); /* Adjust vertical position */
+    transition: margin 0.3s ease; /* Smooth transition for the button */
+    pointer-events: auto;
+  }
+
+  /* Optional: Style to move button out when sidebar is hidden */
+.hidden + .toggleButton {
+    margin-left: -100%; /* Adjust margin to fully show the button when the sidebar is hidden */
+  }
