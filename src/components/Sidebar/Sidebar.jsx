@@ -4,9 +4,10 @@ import { useSearchStore } from "../../stores/Search-Store";
 import { initialFilterState } from "../../assets/filters";
 
 export function SideBar() {
-  // State to manage sidebar visibility
   const [isVisible, setIsVisible] = useState(true);
-  const [crRange, setCrRange] = useState(initialFilterState.crRange);
+  const [crValue, setCrValue] = useState(initialFilterState.crValue);  // Single CR value
+
+
   const applyFilters = useSearchStore((state) => state.applyFilters);
 
   // Function to toggle sidebar visibility
@@ -14,25 +15,15 @@ export function SideBar() {
     setIsVisible(!isVisible);
   };
 
-  
   const handleApplyFilters = () => {
-    applyFilters(crRange); // Pass crRange to applyFilters
+    console.log("Applying filters from Sidebar with CR value:", crValue);
+    applyFilters(crValue);  // Trigger data fetching with the selected CR value
   };
+  
 
-  const handleCrMinChange = (event) => {
-    setCrRange((prev) => ({ ...prev, min: parseInt(event.target.value, 10) }));
+  const handleCrChange = (event) => {
+    setCrValue(parseInt(event.target.value, 10));  // Update the CR value
   };
-
-  const handleCrMaxChange = (event) => {
-    setCrRange((prev) => ({ ...prev, max: parseInt(event.target.value, 10) }));
-  };
-
-
-  // const handleFilterChange = (event) => {
-  //   const { name, value, type, checked } = event.target;
-  //   const filterValue = type === "checkbox" ? checked : parseInt(value, 10);
-  //   setFilter(name, filterValue);
-  // };
 
   return (
     <div className={style.sidebarContainer}>
@@ -46,25 +37,14 @@ export function SideBar() {
             <h3>Filters</h3>
             {/* Slider for HP Range */}
             <div>
-              <label htmlFor="crMin">CR Min: {crRange.min}</label>
+              <label htmlFor="crValue">CR: {crValue}</label>
               <input
                 type="range"
-                id="crMin"
+                id="crValue"
                 min="0"
                 max="30"
-                value={crRange.min}
-                onChange={handleCrMinChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="crMax">CR Max: {crRange.max}</label>
-              <input
-                type="range"
-                id="crMax"
-                min="0"
-                max="30"
-                value={crRange.max}
-                onChange={handleCrMaxChange}
+                value={crValue}
+                onChange={handleCrChange}
               />
             </div>
           </div>

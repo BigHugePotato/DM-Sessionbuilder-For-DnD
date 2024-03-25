@@ -11,6 +11,8 @@ export function CardContainer() {
   }, [fetchInitialData]);
 
   const dataToDisplay = searchData || initialData;
+  console.log("Data to display:", dataToDisplay);
+
 
   return (
     <div className={style.cardContainer}>

@@ -28,17 +28,16 @@ export const useSearchStore = create((set, get) => ({
     }
   },
 
-  // Updated fetchInitialData using fetchData
+  // Fetch data without any CR filter by default
   fetchInitialData: async () => {
     try {
       const data = await get().fetchData(
         `https://api.open5e.com/v1/monsters/?limit=10`
       );
-      set({ initialData: data.results });
+      set({ initialData: data.results, searchData: data.results });
     } catch (error) {
       set({ error: error.message });
     }
-    // get().applyFilters();
   },
 
   // Updated fetchCardDetails using fetchData
@@ -57,17 +56,19 @@ export const useSearchStore = create((set, get) => ({
     set((state) => ({
       filters: updateFilter(state.filters, filterName, value),
     }));
-    // get().applyFilters();
+    console.log("Filters updated in state:", get().filters);
   },
 
-  applyFilters: (crRange) => {
-    const { initialData } = get();
-    const filteredData = initialData.filter(item => {
-      return item.challenge_rating >= crRange.min && item.challenge_rating <= crRange.max;
-    });
-    set({ searchData: filteredData });
+  applyFilters: (crValue) => {
+    const crQuery = `?cr=${crValue}`;
+    get().fetchData(`https://api.open5e.com/v1/monsters/${crQuery}&limit=10`.replace("?&", "?"))
+      .then(data => {
+        set({ searchData: data.results });  // Update the searchData with the filtered results
+      })
+      .catch(error => {
+        set({ error: error.message });
+      });
   },
-
   
 
   setSearch: (search) => {
