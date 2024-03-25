@@ -32,12 +32,13 @@ export const useSearchStore = create((set, get) => ({
   fetchInitialData: async () => {
     try {
       const data = await get().fetchData(
-        `https://api.open5e.com/v1/monsters/?limit=9`
+        `https://api.open5e.com/v1/monsters/?limit=10`
       );
       set({ initialData: data.results });
     } catch (error) {
       set({ error: error.message });
     }
+    // get().applyFilters();
   },
 
   // Updated fetchCardDetails using fetchData
@@ -56,23 +57,18 @@ export const useSearchStore = create((set, get) => ({
     set((state) => ({
       filters: updateFilter(state.filters, filterName, value),
     }));
+    // get().applyFilters();
   },
 
-  applyFilters: () => {
-    const { initialData, filters } = get(); // Get the current data and filters from the state
-  
+  applyFilters: (crRange) => {
+    const { initialData } = get();
     const filteredData = initialData.filter(item => {
-      // Example filtering logic, adjust according to your actual data structure and filters
-      const matchesHpRange = item.hp >= filters.hpRange[0] && item.hp <= filters.hpRange[1];
-      const matchesAcRange = item.ac >= filters.acRange[0] && item.ac <= filters.acRange[1];
-      const matchesHasMagic = filters.hasMagic ? item.hasMagic === filters.hasMagic : true;
-  
-      // Combine more filter conditions as needed
-      return matchesHpRange && matchesAcRange && matchesHasMagic;
+      return item.challenge_rating >= crRange.min && item.challenge_rating <= crRange.max;
     });
-  
-    set({ searchData: filteredData }); // Update searchData with filtered results
+    set({ searchData: filteredData });
   },
+
+  
 
   setSearch: (search) => {
     set({ search });

@@ -1,22 +1,38 @@
 import { useState } from "react";
 import style from "./Sidebar.module.css";
 import { useSearchStore } from "../../stores/Search-Store";
+import { initialFilterState } from "../../assets/filters";
 
 export function SideBar() {
   // State to manage sidebar visibility
   const [isVisible, setIsVisible] = useState(true);
-  const setFilter = useSearchStore((state) => state.setFilter);
+  const [crRange, setCrRange] = useState(initialFilterState.crRange);
+  const applyFilters = useSearchStore((state) => state.applyFilters);
 
   // Function to toggle sidebar visibility
   const toggleSidebar = () => {
     setIsVisible(!isVisible);
   };
 
-  const handleFilterChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    const filterValue = type === "checkbox" ? checked : value;
-    setFilter(name, filterValue);
+  
+  const handleApplyFilters = () => {
+    applyFilters(crRange); // Pass crRange to applyFilters
   };
+
+  const handleCrMinChange = (event) => {
+    setCrRange((prev) => ({ ...prev, min: parseInt(event.target.value, 10) }));
+  };
+
+  const handleCrMaxChange = (event) => {
+    setCrRange((prev) => ({ ...prev, max: parseInt(event.target.value, 10) }));
+  };
+
+
+  // const handleFilterChange = (event) => {
+  //   const { name, value, type, checked } = event.target;
+  //   const filterValue = type === "checkbox" ? checked : parseInt(value, 10);
+  //   setFilter(name, filterValue);
+  // };
 
   return (
     <div className={style.sidebarContainer}>
@@ -30,45 +46,30 @@ export function SideBar() {
             <h3>Filters</h3>
             {/* Slider for HP Range */}
             <div>
-              <label htmlFor="hpRange">HP Range:</label>
+              <label htmlFor="crMin">CR Min: {crRange.min}</label>
               <input
                 type="range"
-                id="hpRange"
-                name="hpRange"
-                min="0"
-                max="300"
-                onChange={handleFilterChange}
-              />
-            </div>
-
-            {/* Slider for AC Range */}
-            <div>
-              <label htmlFor="acRange">AC Range:</label>
-              <input
-                type="range"
-                id="acRange"
-                name="acRange"
+                id="crMin"
                 min="0"
                 max="30"
-                onChange={handleFilterChange}
+                value={crRange.min}
+                onChange={handleCrMinChange}
               />
             </div>
-
-            {/* Checkbox for Has Magic */}
             <div>
-              <label>
-                <input
-                  type="checkbox"
-                  name="hasMagic"
-                  onChange={handleFilterChange}
-                />{" "}
-                Has Magic
-              </label>
+              <label htmlFor="crMax">CR Max: {crRange.max}</label>
+              <input
+                type="range"
+                id="crMax"
+                min="0"
+                max="30"
+                value={crRange.max}
+                onChange={handleCrMaxChange}
+              />
             </div>
-
-            {/* Add more filters as needed */}
           </div>
         )}
+        <button onClick={handleApplyFilters}>Apply Filters</button>
       </div>
       <button onClick={toggleSidebar} className={style.toggleButton}>
         {isVisible ? "<" : ">"}
