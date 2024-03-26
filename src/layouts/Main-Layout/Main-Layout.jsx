@@ -4,6 +4,8 @@ import { SideBar } from "../../components/Sidebar/Sidebar";
 import { InitiativeBar } from "../../components/Initiative-Bar/Initiative-Bar";
 import style from "./Main-Layout.module.css";
 
+console.log("Main-Layout render check");
+
 export function MainLayout() {
   // State to keep track of the currently active tab
   const [activeTab, setActiveTab] = useState("Monsters");

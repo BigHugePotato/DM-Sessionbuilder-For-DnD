@@ -1,14 +1,13 @@
 import { useState } from "react";
 import style from "./Sidebar.module.css";
-import { useSearchStore } from "../../stores/Search-Store";
 import { initialFilterState } from "../../assets/filters";
+import { useFilterStore } from "../../stores/Filter-Store";
 
 export function SideBar() {
   const [isVisible, setIsVisible] = useState(true);
-  const [crValue, setCrValue] = useState(initialFilterState.crValue);  // Single CR value
+  const [crValue, setCrValue] = useState(initialFilterState.crValue); // Single CR value
 
-
-  const applyFilters = useSearchStore((state) => state.applyFilters);
+  const applyFilters = useFilterStore((state) => state.applyFilters);
 
   // Function to toggle sidebar visibility
   const toggleSidebar = () => {
@@ -17,12 +16,11 @@ export function SideBar() {
 
   const handleApplyFilters = () => {
     console.log("Applying filters from Sidebar with CR value:", crValue);
-    applyFilters(crValue);  // Trigger data fetching with the selected CR value
+    applyFilters(crValue); // Trigger data fetching with the selected CR value
   };
-  
 
   const handleCrChange = (event) => {
-    setCrValue(parseInt(event.target.value, 10));  // Update the CR value
+    setCrValue(parseInt(event.target.value, 10)); // Update the CR value
   };
 
   return (
@@ -43,7 +41,7 @@ export function SideBar() {
                 id="crValue"
                 min="0"
                 max="30"
-                value={crValue}
+                value={crValue ?? 1}
                 onChange={handleCrChange}
               />
             </div>

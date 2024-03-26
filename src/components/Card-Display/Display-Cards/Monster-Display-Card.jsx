@@ -9,7 +9,7 @@ import { CardSaves } from "../Card-Build-Components/Card-Saves";
 import { CardLegendaryActions } from "../Card-Build-Components/Card-LegendaryActions";
 import { CardReactions } from "../Card-Build-Components/Card-Reactions";
 import { SelectButton } from "../Card-Build-Components/Card-Select";
-import { useSearchStore } from "../../../stores/Search-Store";
+import { useFetchStore } from "../../../stores/Fetch-Store";
 
 export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
   const [monsterDetails, setMonsterDetails] = useState(null);
@@ -23,11 +23,11 @@ export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
       setLoading(true); // Ensure loading is true at the start of data fetch
       try {
         // Trigger the fetchCardDetails action and wait for it to complete
-        await useSearchStore.getState().fetchCardDetails('monsters', monsterId);
+        await useFetchStore.getState().fetchCardDetails("monsters", monsterId);
 
         // After fetching, access the stored cardDetails from the store
-        const fetchedDetails = useSearchStore.getState().cardDetails;
-        
+        const fetchedDetails = useFetchStore.getState().cardDetails;
+
         // Update the component state with the fetched data
         setMonsterDetails(fetchedDetails);
         setError(null); // Clear any previous errors
@@ -65,7 +65,7 @@ export const MonsterDisplayCard = ({ monsterId, isSelected }) => {
       className={`${style.monsterCard} ${isSelected ? style.highlighted : ""}`}
     >
       <h2 className={style.name}>{name}</h2>
-      <SelectButton cardId={monsterId} className={style.selectButton}/>
+      <SelectButton cardId={monsterId} className={style.selectButton} />
       <div className={style.topSection}>
         {img_main && (
           <div className={style.imageContainer}>
