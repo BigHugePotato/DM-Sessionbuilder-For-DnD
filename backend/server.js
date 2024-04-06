@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-import Movie from "./models/Movie.js";
 import Product from "./models/Products.js";
 
 import express from "express";
@@ -11,16 +10,6 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-
-app.get("/movies", async (req, res) => {
-  try {
-    const movies = await Movie.find(); // Adjust the model and method if necessary
-    res.json(movies);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("An error occurred");
-  }
-});
 
 app.get("/products", async (req, res) => {
   try {
